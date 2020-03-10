@@ -7,8 +7,8 @@
         android:shortcutLongLabel="@string/quick_toggle">
         <intent
             android:action="android.intent.action.MAIN"
-            android:targetPackage="com.bige0.shadowsocksr"
-            android:targetClass="com.bige0.shadowsocksr.QuickToggleShortcut" />
+            android:targetPackage="com.okvpn.ssr"
+            android:targetClass="com.okvpn.ssr.QuickToggleShortcut" />
     </shortcut>
     <shortcut
         android:shortcutId="switch"
@@ -17,8 +17,8 @@
         android:shortcutLongLabel="@string/quick_switch">
         <intent
             android:action="android.intent.action.MAIN"
-            android:targetPackage="com.bige0.shadowsocksr"
-            android:targetClass="com.bige0.shadowsocksr.ShadowsocksQuickSwitchActivity" />
+            android:targetPackage="com.okvpn.ssr"
+            android:targetClass="com.okvpn.ssr.ShadowsocksQuickSwitchActivity" />
     </shortcut>
     <shortcut
         android:shortcutId="scan"
@@ -26,8 +26,8 @@
         android:shortcutShortLabel="@string/add_profile_methods_scan_qr_code"
         android:shortcutLongLabel="@string/add_profile_methods_scan_qr_code">
         <intent
-            android:action="com.bige0.shadowsocksr.intent.action.SCAN"
-            android:targetPackage="com.bige0.shadowsocksr"
-            android:targetClass="com.bige0.shadowsocksr.ProfileManagerActivity" />
+            android:action="com.okvpn.ssr.intent.action.SCAN"
+            android:targetPackage="com.okvpn.ssr"
+            android:targetClass="com.okvpn.ssr.ProfileManagerActivity" />
     </shortcut>
 </shortcuts>

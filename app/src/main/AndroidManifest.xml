@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    package="com.bige0.shadowsocksr">
+    package="com.okvpn.ssr">
 
     <application
-        android:name="com.bige0.shadowsocksr.ShadowsocksApplication"
+        android:name="com.okvpn.ssr.ShadowsocksApplication"
         android:allowBackup="true"
         android:banner="@drawable/ic_start_connected"
         android:hardwareAccelerated="true"
@@ -16,7 +16,7 @@
         android:usesCleartextTraffic="true">
 
         <activity
-            android:name="com.bige0.shadowsocksr.Shadowsocks"
+            android:name="com.okvpn.ssr.Shadowsocks"
             android:label="@string/app_name"
             android:launchMode="singleTask">
             <intent-filter>
@@ -34,30 +34,30 @@
                 android:resource="@xml/shortcuts" />
         </activity>
         <activity
-            android:name="com.bige0.shadowsocksr.ShadowsocksRunnerActivity"
+            android:name="com.okvpn.ssr.ShadowsocksRunnerActivity"
             android:excludeFromRecents="true"
             android:launchMode="singleTask"
             android:taskAffinity=""
             android:theme="@android:style/Theme.Translucent.NoTitleBar" />
 
         <activity
-            android:name="com.bige0.shadowsocksr.ProfileManagerActivity"
+            android:name="com.okvpn.ssr.ProfileManagerActivity"
             android:excludeFromRecents="true"
             android:label="@string/profiles"
             android:launchMode="singleTask"
-            android:parentActivityName="com.bige0.shadowsocksr.Shadowsocks">
+            android:parentActivityName="com.okvpn.ssr.Shadowsocks">
             <intent-filter>
-                <action android:name="com.bige0.shadowsocksr.ProfileManagerActivity" />
+                <action android:name="com.okvpn.ssr.ProfileManagerActivity" />
 
                 <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
             <intent-filter>
-                <action android:name="com.bige0.shadowsocksr.intent.action.SORT" />
+                <action android:name="com.okvpn.ssr.intent.action.SORT" />
 
                 <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
             <intent-filter>
-                <action android:name="com.bige0.shadowsocksr.intent.action.SCAN" />
+                <action android:name="com.okvpn.ssr.intent.action.SCAN" />
 
                 <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
@@ -93,38 +93,38 @@
             </intent-filter>
         </activity>
         <activity
-            android:name="com.bige0.shadowsocksr.ScannerActivity"
+            android:name="com.okvpn.ssr.ScannerActivity"
             android:excludeFromRecents="true"
             android:label="@string/add_profile_methods_scan_qr_code"
-            android:parentActivityName="com.bige0.shadowsocksr.ProfileManagerActivity" />
+            android:parentActivityName="com.okvpn.ssr.ProfileManagerActivity" />
         <activity
-            android:name="com.bige0.shadowsocksr.AppManager"
+            android:name="com.okvpn.ssr.AppManager"
             android:excludeFromRecents="true"
             android:label="@string/proxied_apps"
             android:launchMode="singleTask"
-            android:parentActivityName="com.bige0.shadowsocksr.Shadowsocks" />
+            android:parentActivityName="com.okvpn.ssr.Shadowsocks" />
         <activity
-            android:name="com.bige0.shadowsocksr.TaskerActivity"
+            android:name="com.okvpn.ssr.TaskerActivity"
             android:icon="@mipmap/ic_launcher">
             <intent-filter>
                 <action android:name="com.twofortyfouram.locale.intent.action.EDIT_SETTING" />
             </intent-filter>
         </activity>
         <activity
-            android:name="com.bige0.shadowsocksr.ShadowsocksQuickSwitchActivity"
+            android:name="com.okvpn.ssr.ShadowsocksQuickSwitchActivity"
             android:excludeFromRecents="true"
             android:label="@string/quick_switch"
             android:launchMode="singleInstance"
             android:taskAffinity=""
             android:theme="@style/PopupTheme.QuickSwitch">
             <intent-filter>
-                <action android:name="com.bige0.shadowsocksr.QUICK_SWITCH" />
+                <action android:name="com.okvpn.ssr.QUICK_SWITCH" />
 
                 <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
         </activity>
         <activity
-            android:name="com.bige0.shadowsocksr.QuickToggleShortcut"
+            android:name="com.okvpn.ssr.QuickToggleShortcut"
             android:excludeFromRecents="true"
             android:label="@string/quick_toggle"
             android:launchMode="singleTask"
@@ -140,7 +140,7 @@
             android:value="@integer/google_play_services_version" />
 
         <receiver
-            android:name="com.bige0.shadowsocksr.BootReceiver"
+            android:name="com.okvpn.ssr.BootReceiver"
             android:directBootAware="true"
             android:enabled="false">
             <intent-filter>
@@ -149,7 +149,7 @@
             </intent-filter>
         </receiver>
         <receiver
-            android:name="com.bige0.shadowsocksr.TaskerReceiver"
+            android:name="com.okvpn.ssr.TaskerReceiver"
             tools:ignore="ExportedReceiver">
             <intent-filter>
                 <action android:name="com.twofortyfouram.locale.intent.action.FIRE_SETTING" />
@@ -164,10 +164,10 @@
             android:process=":bg" />
 
         <service
-            android:name="com.bige0.shadowsocksr.ShadowsocksRunnerService"
+            android:name="com.okvpn.ssr.service.ShadowsocksRunnerService"
             android:exported="false" />
         <service
-            android:name="com.bige0.shadowsocksr.ShadowsocksVpnService"
+            android:name="com.okvpn.ssr.service.ShadowsocksVpnService"
             android:exported="false"
             android:label="@string/app_name"
             android:permission="android.permission.BIND_VPN_SERVICE"
@@ -177,7 +177,7 @@
             </intent-filter>
         </service>
         <service
-            android:name="com.bige0.shadowsocksr.ShadowsocksTileService"
+            android:name="com.okvpn.ssr.ShadowsocksTileService"
             android:icon="@drawable/ic_start_connected"
             android:label="@string/quick_toggle"
             android:permission="android.permission.BIND_QUICK_SETTINGS_TILE"
