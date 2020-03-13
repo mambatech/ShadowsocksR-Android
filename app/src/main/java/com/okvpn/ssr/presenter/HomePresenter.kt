@@ -1,11 +1,13 @@
 package com.okvpn.ssr.presenter
 
+import android.content.*
 import android.os.*
 import com.edison.mvplib.*
+import com.okvpn.ssr.*
 import com.okvpn.ssr.aidl.*
 import com.okvpn.ssr.database.*
+import com.okvpn.ssr.job.*
 import com.okvpn.ssr.presenter.constract.*
-import com.okvpn.ssr.utils.*
 import io.reactivex.*
 import io.reactivex.disposables.*
 
@@ -15,6 +17,8 @@ created by edison 2020-03-10
 class HomePresenter : BasePresenterImpl<HomeConstract.View>(), HomeConstract.Presenter
 {
 	private val defaultProfileId = 100
+	var mServiceBoundContext: ServiceBoundContext? = null
+
 	var handler = Handler(Looper.getMainLooper())
 
 	private val callback by lazy {
@@ -23,36 +27,7 @@ class HomePresenter : BasePresenterImpl<HomeConstract.View>(), HomeConstract.Pre
 			override fun stateChanged(s: Int, profileName: String?, m: String?)
 			{
 				handler.post {
-					when (s)
-					{
-						Constants.State.CONNECTING ->
-						{
-
-						}
-
-						Constants.State.CONNECTED ->
-						{
-
-						}
-
-						Constants.State.STOPPED ->
-						{
-
-							if (!m.isNullOrEmpty())
-							{
-								//TODO 连接失败
-							}
-
-						}
-						Constants.State.STOPPING ->
-						{
-
-						}
-						else ->
-						{
-
-						}
-					}
+					mView.onConnectStateChanged(s,m)
 				}
 			}
 
@@ -62,6 +37,72 @@ class HomePresenter : BasePresenterImpl<HomeConstract.View>(), HomeConstract.Pre
 					mView.onUpdateTraffic(txRate, rxRate, txTotal, rxTotal)
 				}
 			}
+		}
+	}
+
+	override fun onAttachBaseContext(context: Context)
+	{
+		mServiceBoundContext = object : ServiceBoundContext(context)
+		{
+			override fun onServiceConnected()
+			{
+				mView.onServiceConnected()
+			}
+
+			override fun onServiceDisconnected()
+			{
+				mView.onServiceDisconnected()
+			}
+
+			override fun binderDied()
+			{
+				detachService()
+				ShadowsocksApplication.app.crashRecovery()
+				attachService()
+			}
+		}
+
+		SSRSubUpdateJob.schedule()
+		attachService()
+	}
+
+	private fun attachService()
+	{
+		mServiceBoundContext?.attachService(callback)
+	}
+
+	override fun onStart()
+	{
+		mServiceBoundContext?.registerCallback()
+	}
+
+	override fun stopService()
+	{
+		if (mServiceBoundContext?.bgService != null)
+		{
+			try
+			{
+				mServiceBoundContext?.bgService!!.use(-1)
+			}
+			catch (e: RemoteException)
+			{
+				e.printStackTrace()
+			}
+		}
+	}
+
+	/**
+	 * Called when connect button is clicked.
+	 */
+	override fun startServiec()
+	{
+		try
+		{
+			mServiceBoundContext?.bgService!!.use(ShadowsocksApplication.app.profileId())
+		}
+		catch (e: RemoteException)
+		{
+			e.printStackTrace()
 		}
 	}
 
