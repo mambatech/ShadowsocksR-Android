@@ -63,6 +63,7 @@ class ShadowsocksApplication : Application()
 
 		profileManager = ProfileManager(DBHelper(this))
 		ssrSubManager = SSRSubManager(DBHelper(this))
+		ProfileMgrDelegate.profileManager = profileManager
 
 		mThreadPool = ScheduledThreadPoolExecutor(10, ThreadFactory { r ->
 			val thread = Thread(r)

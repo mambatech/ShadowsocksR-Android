@@ -45,6 +45,7 @@ android {
 
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
+    implementation project(':basemvplib')
 
     implementation 'androidx.appcompat:appcompat:1.1.0'
     implementation 'androidx.gridlayout:gridlayout:1.0.0'
@@ -63,6 +64,10 @@ dependencies {
     implementation "net.glxn.qrgen:android:2.0"
     implementation 'com.squareup.okhttp3:okhttp:4.2.2'
     implementation "com.google.code.findbugs:jsr305:3.0.2"
+    // ImmersionBar
+    implementation 'com.gyf.immersionbar:immersionbar:3.0.0'
+    //loading view
+    implementation 'com.ldoublem.loadingview:loadingviewlib:1.0'
 }
 
 repositories {

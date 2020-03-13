@@ -16,7 +16,7 @@
         android:usesCleartextTraffic="true">
 
         <activity
-            android:name="com.okvpn.ssr.Shadowsocks"
+            android:name="com.okvpn.ssr.view.HomeActivity"
             android:label="@string/app_name"
             android:launchMode="singleTask">
             <intent-filter>

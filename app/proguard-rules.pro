@@ -28,3 +28,7 @@
 -dontwarn com.google.android.gms.internal.**
 -dontwarn com.j256.ormlite.**
 -dontwarn org.xbill.**
+
+#ImmersionBar
+-keep class com.gyf.immersionbar.* {*;}
+ -dontwarn com.gyf.immersionbar.**
